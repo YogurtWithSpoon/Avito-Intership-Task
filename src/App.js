@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { GlobalStyles} from "./globalStyles";
+import { Title,Modal } from "./components";
+import { StyledContainer } from "./components/container/Container.styled";
+import styled from "styled-components";
+import { Gallery } from "./features";
+import { BrowserRouter as Router, Switch,Route} from "react-router-dom";
+
+const AppContainer = styled(StyledContainer)`
+  padding-top: 15px;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+          <GlobalStyles />
+          <AppContainer>
+            <Title>TEST APP</Title>
+            <Gallery />
+            <Switch>
+              <Route path="/:id/comments">
+                <Modal />
+              </Route>
+            </Switch>
+            {/* <Footer></Footer> */}
+          </AppContainer>
+      </Router>
+    </>
   );
 }
 
