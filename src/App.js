@@ -25,7 +25,7 @@ function App() {
             {/* <Footer></Footer> */}
           </AppContainer>
       </Router>
-    </>
+    </> 
   );
 }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ReactDom from 'react-dom';
 import {ReactComponent as CloseIcon} from './assets/Close.svg';
 import {
   ModalContainer,
@@ -25,6 +26,8 @@ function Modal() {
   const { id } = useParams();
   const history = useHistory();
 
+
+
   useEffect(() => {
     async function fetch() {
       setData(await loadDetails(id));
@@ -43,7 +46,7 @@ function Modal() {
       console.log(error)
     }
   }
-  return (
+  return ReactDom.createPortal(
     <>
       <ModalOpen />
       <ModalContainer>
@@ -76,7 +79,7 @@ function Modal() {
       </ModalContainer>
       <BackDrop />
     </>
-  );
+  ,document.getElementById('root-modal'))
 }
 
 export default Modal;

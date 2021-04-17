@@ -12,8 +12,8 @@ export const ModalContainer = styled.div`
   z-index: 1000;
   padding: 30px 20px 20px 30px;
   @media screen and (max-width: 768px) {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     align-items: flex-start;
     padding: 0;
     justify-content: space-between;
@@ -24,9 +24,11 @@ export const BackDrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.7);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 2;
   @media screen and (max-width: 768px) {
     display: none;
@@ -69,7 +71,8 @@ export const PhotoContainer = styled.div`
 
 export const Photo = styled.img`
   width: 100%;
-  height: 100%;
+  height: auto;
+  object-fit: cover;
 `;
 
 export const PhotoLoad = styled(Photo)`
