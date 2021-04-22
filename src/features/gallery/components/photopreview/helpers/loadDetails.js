@@ -1,4 +1,4 @@
-import {getPhotoDetails} from '../../../api/requests';
+import {getPhotoDetails} from 'api/requests';
 
 
 export const loadDetails = async (id) => {

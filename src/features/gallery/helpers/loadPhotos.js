@@ -1,4 +1,4 @@
-import {getPhotos} from '../../../api/requests';
+import {getPhotos} from 'api/requests';
 
 export async function loadPhotos(){
   try {

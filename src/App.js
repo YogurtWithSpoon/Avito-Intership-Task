@@ -2,7 +2,7 @@ import { GlobalStyles} from "./globalStyles";
 import { Title,Modal } from "./components";
 import { StyledContainer } from "./components/container/Container.styled";
 import styled from "styled-components";
-import { Gallery } from "./features";
+import { Gallery, PhotoPreview} from "./features";
 import { BrowserRouter as Router, Switch,Route} from "react-router-dom";
 
 const AppContainer = styled(StyledContainer)`
@@ -19,7 +19,9 @@ function App() {
             <Gallery />
             <Switch>
               <Route path="/:id/comments">
-                <Modal />
+                <Modal>
+                  <PhotoPreview />
+                </Modal>
               </Route>
             </Switch>
             {/* <Footer></Footer> */}
