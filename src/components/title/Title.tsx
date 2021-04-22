@@ -1,7 +1,11 @@
 import React from 'react'
 import {StyledTitle} from './Title.styled';
 
-function Title({children,...props}) {
+interface TitleProps {
+  children: React.ReactNode | React.ReactChild;
+}
+
+function Title({children}:TitleProps):React.ReactElement{
   return (
     <StyledTitle>
       {children}

@@ -1,9 +1,9 @@
 import React from 'react'
 import {StyledInput} from './Input.styled';
 
-function Input({...props}) {
+function Input():React.ReactElement {
   return (
-    <StyledInput {...props}/>
+    <StyledInput/>
   )
 }
 

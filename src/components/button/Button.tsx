@@ -1,7 +1,11 @@
 import React from 'react'
 import {StyledButton} from './Button.styled';
 
-function Button({children,...props}) {
+interface ButtonProps{
+  children: React.ReactChild | React.ReactNode;
+}
+
+function Button({children}:ButtonProps):React.ReactElement {
   return (
     <StyledButton>
       {children}

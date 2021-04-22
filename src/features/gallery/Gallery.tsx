@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import {loadPhotos} from './helpers/loadPhotos';
 import {GalleryContainer,PhotoContainer,Photo} from './Gallery.styled';
+import {PhotoType} from 'types';
 
 function Gallery() {
   const [photos, setPhotos] = useState([]);
@@ -14,11 +15,12 @@ function Gallery() {
 
   return (
     <GalleryContainer>
-      {photos.map(photo => (
+      {photos.map(function(photo:PhotoType){
+      return (
           <PhotoContainer to={`/${photo.id}/comments`} key={photo.id}>
             <Photo src={photo.url} alt='gallery item'/>
           </PhotoContainer>
-      ))}
+      )})}
     </GalleryContainer>
   )
 }

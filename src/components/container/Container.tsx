@@ -1,7 +1,11 @@
 import React from 'react'
 import {StyledContainer} from './Container.styled';
 
-function Container({children,...props}) {
+interface ContainerProps{
+  children: React.ReactNode | React.ReactChild;
+}
+
+function Container({children}:ContainerProps):React.ReactElement {
   return (
     <StyledContainer >
       {children};
