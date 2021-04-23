@@ -3,12 +3,13 @@ import {StyledButton} from './Button.styled';
 
 interface ButtonProps{
   children: React.ReactChild | React.ReactNode;
+  type?: "button" | "submit" | "reset" | undefined
 }
 
-function Button({children}:ButtonProps):React.ReactElement {
+function Button(props:ButtonProps):React.ReactElement {
   return (
-    <StyledButton>
-      {children}
+    <StyledButton {...props}>
+      {props.children}
     </StyledButton>
   )
 }

@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import {StyledInput} from './Input.styled';
 
-function Input():React.ReactElement {
+interface InputProps{
+  onChange: (e:ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  required?: boolean;
+  name: string;
+}
+
+function Input(props:InputProps):React.ReactElement {
   return (
-    <StyledInput/>
+    <StyledInput {...props}/>
   )
 }
 

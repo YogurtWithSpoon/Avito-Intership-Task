@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import { ReactComponent as CloseIcon } from "./assets/Close.svg";
 import {
   ModalContainer,
@@ -17,15 +17,22 @@ import { Input, Button } from "components";
 import { loadDetails } from "./helpers/loadDetails";
 import { dateParse } from "./helpers/dateParse";
 import { AddComment } from "api/requests";
+import { PhotoPreviewType } from "types";
+
+interface ParamsProps {
+  id: string;
+}
 
 function Photopreview() {
-  const [data, setData] = useState([]);
-  const { id } = useParams();
+  const [data, setData] = useState({} as PhotoPreviewType)
+  const { id } = useParams<ParamsProps>();
   const history = useHistory();
+  const [name, setName] = useState<string>('');
+  const [comment, setComment] = useState<string>('');
 
-  const closeModal = () => history.push("/");
+  const closeModal = (): void => history.push("/");
 
-  async function fetch() {
+  async function fetch(): Promise<void> {
     setData(await loadDetails(id));
   }
 
@@ -33,10 +40,8 @@ function Photopreview() {
     fetch();
   }, []);
 
-  const submitHandler = async (e) => {
+  const submitHandler = async (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const name = e.target[0].value;
-    const comment = e.target[1].value;
     try {
       const send = await AddComment(id, { name, comment });
       console.log(send.status);
@@ -44,6 +49,11 @@ function Photopreview() {
       console.log(error);
     }
   };
+
+  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    e.target.name === 'name' ? setName(value) : setComment(value);
+  }
 
   return (
     <ModalContainer>
@@ -53,7 +63,7 @@ function Photopreview() {
         </PhotoContainer>
         <CommentsContainer>
           {data.comments && data.comments.length > 0 ? (
-            data.comments.map((comment) => (
+            data.comments.map((comment:any):any => (
               <Comment key={comment.id}>
                 <CommentTypography color="#999999">
                   {dateParse(comment.date)}
@@ -70,8 +80,8 @@ function Photopreview() {
         </CloseButton>
       </PhotoInformation>
       <CommentForm onSubmit={submitHandler}>
-        <Input placeholder="Ваше Имя" required />
-        <Input placeholder="Ваше Комментарий" required />
+        <Input onChange={changeHandler} name="name" placeholder="Ваше Имя" required />
+        <Input onChange={changeHandler} name="comment" placeholder="Ваше Комментарий" required />
         <Button type="submit">Оставить комментарий</Button>
       </CommentForm>
     </ModalContainer>

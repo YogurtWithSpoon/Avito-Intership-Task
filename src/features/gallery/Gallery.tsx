@@ -4,7 +4,7 @@ import {GalleryContainer,PhotoContainer,Photo} from './Gallery.styled';
 import {PhotoType} from 'types';
 
 function Gallery() {
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState<PhotoType[] | undefined>([]);
 
   useEffect(() => {
     async function fetch(){
@@ -15,12 +15,11 @@ function Gallery() {
 
   return (
     <GalleryContainer>
-      {photos.map(function(photo:PhotoType){
-      return (
+      {photos?.map((photo:PhotoType):React.ReactNode => (
           <PhotoContainer to={`/${photo.id}/comments`} key={photo.id}>
             <Photo src={photo.url} alt='gallery item'/>
           </PhotoContainer>
-      )})}
+      ))}
     </GalleryContainer>
   )
 }
